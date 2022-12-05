@@ -1,0 +1,33 @@
+trigger
+UPDATE user_friend
+SET FriendUserID = 20000 WHERE UserID =  10001;
+
+func
+
+SELECT album.AlbumID, Album.name, album_deets(SongCount) as TYPE FROM album
+
+
+procedure
+
+
+call artist_album(4444, @m,@n);
+SELECT @m,@n;
+
+aggregate funcs
+
+
+// total no of songs in that album 
+select sum(SongCount) from album;
+
+//total no of friends
+select count(FriendUserID) from user_friend where UserID = 10001; 
+
+// min number of tracks in an album
+select name, min(SongCount) from album
+
+// max number of tracks in an album
+select name, max(SongCount) from album 
+
+// join
+
+    select  * from artist join album

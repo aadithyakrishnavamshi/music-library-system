@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PES2UG20CS003 Project Report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="dbms-mini-project-report">DBMS Mini project Report</h1>
+<h1 id="music-library-system">Music Library System</h1>
+<h3 id="aadithya-krishna-vamshi-vbrpes2ug20cs003brsection-a">Aadithya Krishna Vamshi V<br>PES2UG20CS003<br>Section A</h3>
+<hr>
+<h2 id="short-description-about-the-project-and-scope">Short Description about the project and scope</h2>
+<p>The music library system is to categorize and catelog every     single piece of music for music information and reviews.</p>
+<h2 id="er-diagram">ER Diagram</h2>
+<p><img src="ER Diagram.png" alt=""></p>
+<h2 id="relational-scheme">Relational Scheme</h2>
+<p><img src="Relational Schema.png" alt=""></p>
+<h2 id="ddl-statements-to-build-the-database">DDL statements to build the database</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`album`</span> (
+  <span class="hljs-string">`AlbumID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`AlbumID`</span> &gt;= <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`AlbumID`</span> &lt;= <span class="hljs-number">99999</span>),
+  <span class="hljs-string">`SongCount`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`SongCount`</span> &gt; <span class="hljs-number">0</span>),
+  <span class="hljs-string">`name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`ArtistID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`ArtistID`</span> &gt;= <span class="hljs-number">1000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`ArtistID`</span> &lt;= <span class="hljs-number">9999</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`artist`</span> (
+  <span class="hljs-string">`Age`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`StageName`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`RecordLabel`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`ArtistID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`ArtistID`</span> &gt;= <span class="hljs-number">1000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`ArtistID`</span> &lt;= <span class="hljs-number">9999</span>),
+  <span class="hljs-string">`Description`</span> <span class="hljs-built_in">text</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`OriginCountry`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`genre`</span> (
+  <span class="hljs-string">`GenreID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`GenreID`</span> &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`GenreID`</span> &lt; <span class="hljs-number">1000</span>),
+  <span class="hljs-string">`Name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`playlist`</span> (
+  <span class="hljs-string">`PlaylistID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`PlaylistID`</span> &gt;= <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`PlaylistID`</span> &lt;= <span class="hljs-number">99999</span>),
+  <span class="hljs-string">`Name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`SongCount`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`SongCount`</span> &gt; <span class="hljs-number">0</span>),
+  <span class="hljs-string">`Description`</span> <span class="hljs-built_in">text</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`GenreID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`GenreID`</span> &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`GenreID`</span> &lt; <span class="hljs-number">1000</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`playlist_song`</span> (
+  <span class="hljs-string">`SongID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`SongID`</span> &gt;= <span class="hljs-number">100000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`SongID`</span> &lt;= <span class="hljs-number">999999</span>),
+  <span class="hljs-string">`PlaylistID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`PlaylistID`</span> &gt;= <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`PlaylistID`</span> &lt;= <span class="hljs-number">99999</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`podcast`</span> (
+  <span class="hljs-string">`PodcastID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`PodcastID`</span> &gt;= <span class="hljs-number">1000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`PodcastID`</span> &lt;= <span class="hljs-number">9999</span>),
+  <span class="hljs-string">`Name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`EpisodeNo`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`EpisodeNo`</span> &gt; <span class="hljs-number">0</span>),
+  <span class="hljs-string">`Description`</span> <span class="hljs-built_in">text</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`YearReleased`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`YearReleased`</span> &gt; <span class="hljs-number">1600</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`YearReleased`</span> &lt;= <span class="hljs-number">2021</span>),
+  <span class="hljs-string">`Length`</span> <span class="hljs-built_in">time</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`ArtistID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`ArtistID`</span> &gt;= <span class="hljs-number">1000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`ArtistID`</span> &lt;= <span class="hljs-number">9999</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`song`</span> (
+  <span class="hljs-string">`SongID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`SongID`</span> &gt;= <span class="hljs-number">100000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`SongID`</span> &lt;= <span class="hljs-number">999999</span>),
+  <span class="hljs-string">`Name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`YearReleased`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`YearReleased`</span> &gt;= <span class="hljs-number">1600</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`YearReleased`</span> &lt;= <span class="hljs-number">2021</span>),
+  <span class="hljs-string">`RecordLabel`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`Language`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`Length`</span> <span class="hljs-built_in">time</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`ArtistID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`ArtistID`</span> &gt;= <span class="hljs-number">1000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`ArtistID`</span> &lt;= <span class="hljs-number">9999</span>),
+  <span class="hljs-string">`AlbumID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`AlbumID`</span> &gt;= <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`AlbumID`</span> &lt;= <span class="hljs-number">99999</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`users`</span> (
+  <span class="hljs-string">`UserID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`UserID`</span> &gt; <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`UserID`</span> &lt;= <span class="hljs-number">99999</span>),
+  <span class="hljs-string">`Email`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`Email`</span> <span class="hljs-keyword">like</span> <span class="hljs-string">'%@%'</span>),
+  <span class="hljs-string">`Name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`MembershipPlan`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`MembershipPlan`</span> <span class="hljs-keyword">in</span> (<span class="hljs-string">'Standard'</span>,<span class="hljs-string">'Premium'</span>))
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_artist`</span> (
+  <span class="hljs-string">`ArtistID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`ArtistID`</span> &gt;= <span class="hljs-number">1000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`ArtistID`</span> &lt;= <span class="hljs-number">9999</span>),
+  <span class="hljs-string">`UserID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`UserID`</span> &gt; <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`UserID`</span> &lt;= <span class="hljs-number">99999</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_friend`</span> (
+  <span class="hljs-string">`UserID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`UserID`</span> &gt; <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`UserID`</span> &lt;= <span class="hljs-number">99999</span>),
+  <span class="hljs-string">`FriendUserID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`FriendUserID`</span> &gt; <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`FriendUserID`</span> &lt;= <span class="hljs-number">99999</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_playlist`</span> (
+  <span class="hljs-string">`PlaylistID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`PlaylistID`</span> &gt;= <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`PlaylistID`</span> &lt;= <span class="hljs-number">99999</span>),
+  <span class="hljs-string">`UserID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`UserID`</span> &gt; <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`UserID`</span> &lt;= <span class="hljs-number">99999</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_podcast`</span> (
+  <span class="hljs-string">`PodcastID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`PodcastID`</span> &gt;= <span class="hljs-number">1000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`PodcastID`</span> &lt;= <span class="hljs-number">9999</span>),
+  <span class="hljs-string">`UserID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`UserID`</span> &gt; <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`UserID`</span> &lt;= <span class="hljs-number">99999</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_song`</span> (
+  <span class="hljs-string">`SongID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`SongID`</span> &gt;= <span class="hljs-number">100000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`SongID`</span> &lt;= <span class="hljs-number">999999</span>),
+  <span class="hljs-string">`UserID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> <span class="hljs-keyword">CHECK</span> (<span class="hljs-string">`UserID`</span> &gt; <span class="hljs-number">10000</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`UserID`</span> &lt;= <span class="hljs-number">99999</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8mb4;
+
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`album`</span>  <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`AlbumID`</span>),  <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`ArtistID`</span> (<span class="hljs-string">`ArtistID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`artist`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`ArtistID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`genre`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`GenreID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`Name`</span> (<span class="hljs-string">`Name`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`playlist`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`PlaylistID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`GenreID`</span> (<span class="hljs-string">`GenreID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`playlist_song`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`SongID`</span>,<span class="hljs-string">`PlaylistID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`PlaylistID`</span> (<span class="hljs-string">`PlaylistID`</span>)
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`podcast`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`PodcastID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`ArtistID`</span> (<span class="hljs-string">`ArtistID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`song`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`SongID`</span>),  <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`ArtistID`</span> (<span class="hljs-string">`ArtistID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`AlbumID`</span> (<span class="hljs-string">`AlbumID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`users`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`UserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_artist`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`ArtistID`</span>,<span class="hljs-string">`UserID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`UserID`</span> (<span class="hljs-string">`UserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_friend`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`UserID`</span>,<span class="hljs-string">`FriendUserID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`FriendUserID`</span> (<span class="hljs-string">`FriendUserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_playlist`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`PlaylistID`</span>,<span class="hljs-string">`UserID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`UserID`</span> (<span class="hljs-string">`UserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_podcast`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`PodcastID`</span>,<span class="hljs-string">`UserID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`UserID`</span> (<span class="hljs-string">`UserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_song`</span> <span class="hljs-keyword">ADD</span> PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`SongID`</span>,<span class="hljs-string">`UserID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">KEY</span> <span class="hljs-string">`UserID`</span> (<span class="hljs-string">`UserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`album`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`album_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`ArtistID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`artist`</span> (<span class="hljs-string">`ArtistID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`playlist`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`playlist_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`GenreID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`genre`</span> (<span class="hljs-string">`GenreID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`playlist_song`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`playlist_song_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`SongID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`song`</span> (<span class="hljs-string">`SongID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`playlist_song_ibfk_2`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`PlaylistID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`playlist`</span> (<span class="hljs-string">`PlaylistID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`podcast`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`podcast_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`ArtistID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`artist`</span> (<span class="hljs-string">`ArtistID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`song`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`song_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`ArtistID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`artist`</span> (<span class="hljs-string">`ArtistID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`song_ibfk_2`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`AlbumID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`album`</span> (<span class="hljs-string">`AlbumID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_artist`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_artist_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`ArtistID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`artist`</span> (<span class="hljs-string">`ArtistID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_artist_ibfk_2`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`UserID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`users`</span> (<span class="hljs-string">`UserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_friend`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_friend_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`UserID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`users`</span> (<span class="hljs-string">`UserID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_friend_ibfk_2`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`FriendUserID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`users`</span> (<span class="hljs-string">`UserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_playlist`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_playlist_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`PlaylistID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`playlist`</span> (<span class="hljs-string">`PlaylistID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_playlist_ibfk_2`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`UserID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`users`</span> (<span class="hljs-string">`UserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_podcast`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_podcast_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`PodcastID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`podcast`</span> (<span class="hljs-string">`PodcastID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_podcast_ibfk_2`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`UserID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`users`</span> (<span class="hljs-string">`UserID`</span>);
+<span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`user_song`</span> <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_song_ibfk_1`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`SongID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`song`</span> (<span class="hljs-string">`SongID`</span>), <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> <span class="hljs-string">`user_song_ibfk_2`</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`UserID`</span>) <span class="hljs-keyword">REFERENCES</span> <span class="hljs-string">`users`</span> (<span class="hljs-string">`UserID`</span>);
+
+</div></code></pre>
+<h3 id="different-methods-used-to-populate-data---show-statements-used-under-different-methods">Different methods used to populate data. - Show statements used under different methods</h3>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-string">`album`</span> (<span class="hljs-string">`AlbumID`</span>, <span class="hljs-string">`SongCount`</span>, <span class="hljs-string">`name`</span>, <span class="hljs-string">`ArtistID`</span>) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">10000</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'Scary Hours 2'</span>, <span class="hljs-number">6666</span>),
+(<span class="hljs-number">20000</span>, <span class="hljs-number">5</span>, <span class="hljs-string">'Watch the Throne'</span>, <span class="hljs-number">4444</span>),
+(<span class="hljs-number">30000</span>, <span class="hljs-number">4</span>, <span class="hljs-string">'Aashiqui 2'</span>, <span class="hljs-number">5555</span>),
+(<span class="hljs-number">40000</span>, <span class="hljs-number">1</span>, <span class="hljs-string">'Poco'</span>, <span class="hljs-number">7777</span>),
+(<span class="hljs-number">50000</span>, <span class="hljs-number">2</span>, <span class="hljs-string">'Imma Brown Boy'</span>, <span class="hljs-number">8888</span>);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-string">`artist`</span> (<span class="hljs-string">`Age`</span>, <span class="hljs-string">`StageName`</span>, <span class="hljs-string">`RecordLabel`</span>, <span class="hljs-string">`ArtistID`</span>, <span class="hljs-string">`Description`</span>, <span class="hljs-string">`OriginCountry`</span>) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">50</span>, <span class="hljs-string">'Jay-Z'</span>, <span class="hljs-string">'Tidal'</span>, <span class="hljs-number">4444</span>, <span class="hljs-string">'Jay-Z is Beyonces husband'</span>, <span class="hljs-string">'U.S.A'</span>),
+(<span class="hljs-number">43</span>, <span class="hljs-string">'Arijit Singh'</span>, <span class="hljs-string">'Bollywood'</span>, <span class="hljs-number">5555</span>, <span class="hljs-string">'Arijit Singh is the second best singer from India'</span>, <span class="hljs-string">'India'</span>),
+(<span class="hljs-number">34</span>, <span class="hljs-string">'Drake'</span>, <span class="hljs-string">'OVO'</span>, <span class="hljs-number">6666</span>, <span class="hljs-string">'Drake is a rapper from Toronto'</span>, <span class="hljs-string">'Canada'</span>),
+(<span class="hljs-number">22</span>, <span class="hljs-string">'Christian Nodal'</span>, <span class="hljs-string">'Lavida Loca'</span>, <span class="hljs-number">7777</span>, <span class="hljs-string">'Christian is a popular corrido singer from Sinaloa'</span>, <span class="hljs-string">'Mexico'</span>),
+(<span class="hljs-number">20</span>, <span class="hljs-string">'Ani'</span>, <span class="hljs-string">'Nike Records'</span>, <span class="hljs-number">8888</span>, <span class="hljs-string">'Ani used to work part-time at Mcdonalds'</span>, <span class="hljs-string">'Indonesia'</span>);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-string">`genre`</span> (<span class="hljs-string">`GenreID`</span>, <span class="hljs-string">`Name`</span>) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">400</span>, <span class="hljs-string">'Classical'</span>),
+(<span class="hljs-number">300</span>, <span class="hljs-string">'Country'</span>),
+(<span class="hljs-number">200</span>, <span class="hljs-string">'Hip Hop'</span>),
+(<span class="hljs-number">500</span>, <span class="hljs-string">'Jazz'</span>),
+(<span class="hljs-number">100</span>, <span class="hljs-string">'Rap'</span>);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-string">`playlist`</span> (<span class="hljs-string">`PlaylistID`</span>, <span class="hljs-string">`Name`</span>, <span class="hljs-string">`SongCount`</span>, <span class="hljs-string">`Description`</span>, <span class="hljs-string">`GenreID`</span>) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">10000</span>, <span class="hljs-string">'Study Jamz'</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'The best playlist for studying'</span>, <span class="hljs-number">400</span>),
+(<span class="hljs-number">20000</span>, <span class="hljs-string">'Late Night Hustle'</span>, <span class="hljs-number">4</span>, <span class="hljs-string">'The best beats and rhymes'</span>, <span class="hljs-number">100</span>),
+(<span class="hljs-number">30000</span>, <span class="hljs-string">'Tractor In The Ditch'</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'For all the Southies out there'</span>, <span class="hljs-number">300</span>);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-string">`playlist_song`</span> (<span class="hljs-string">`SongID`</span>, <span class="hljs-string">`PlaylistID`</span>) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">100001</span>, <span class="hljs-number">30000</span>),
+(<span class="hljs-number">100002</span>, <span class="hljs-number">30000</span>),
+(<span class="hljs-number">100003</span>, <span class="hljs-number">20000</span>),
+(<span class="hljs-number">111111</span>, <span class="hljs-number">30000</span>),
+(<span class="hljs-number">111112</span>, <span class="hljs-number">10000</span>),
+(<span class="hljs-number">111112</span>, <span class="hljs-number">20000</span>),
+(<span class="hljs-number">222222</span>, <span class="hljs-number">20000</span>),
+(<span class="hljs-number">222223</span>, <span class="hljs-number">10000</span>),
+(<span class="hljs-number">222224</span>, <span class="hljs-number">10000</span>),
+(<span class="hljs-number">222225</span>, <span class="hljs-number">20000</span>),
+(<span class="hljs-number">222226</span>, <span class="hljs-number">20000</span>),
+(<span class="hljs-number">222226</span>, <span class="hljs-number">30000</span>),
+(<span class="hljs-number">333333</span>, <span class="hljs-number">10000</span>);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-string">`podcast`</span> (<span class="hljs-string">`PodcastID`</span>, <span class="hljs-string">`Name`</span>, <span class="hljs-string">`EpisodeNo`</span>, <span class="hljs-string">`Description`</span>, <span class="hljs-string">`YearReleased`</span>, <span class="hljs-string">`Length`</span>, <span class="hljs-string">`ArtistID`</span>) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">1000</span>, <span class="hljs-string">'Life in the 6ix'</span>, <span class="hljs-number">1</span>, <span class="hljs-string">'Drake talks about his beef with Kanye'</span>, <span class="hljs-number">2020</span>, <span class="hljs-string">'01:10:48'</span>, <span class="hljs-number">6666</span>),
+(<span class="hljs-number">2000</span>, <span class="hljs-string">'Makin Dolla$'</span>, <span class="hljs-number">2</span>, <span class="hljs-string">'Jay-Z tells you how to hide your money from Bill'</span>, <span class="hljs-number">2019</span>, <span class="hljs-string">'00:56:48'</span>, <span class="hljs-number">4444</span>),
+(<span class="hljs-number">2001</span>, <span class="hljs-string">'Makin Dolla$'</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'Jay-Z tells you how to get rich quick'</span>, <span class="hljs-number">2020</span>, <span class="hljs-string">'00:49:38'</span>, <span class="hljs-number">4444</span>);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-string">`song`</span> (<span class="hljs-string">`SongID`</span>, <span class="hljs-string">`Name`</span>, <span class="hljs-string">`YearReleased`</span>, <span class="hljs-string">`RecordLabel`</span>, <span class="hljs-string">`Language`</span>, <span class="hljs-string">`Length`</span>, <span class="hljs-string">`ArtistID`</span>, <span class="hljs-string">`AlbumID`</span>) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">100001</span>, <span class="hljs-string">'Poco'</span>, <span class="hljs-number">2020</span>, <span class="hljs-string">'LavidaLoca'</span>, <span class="hljs-string">'Spanish'</span>, <span class="hljs-string">'00:03:45'</span>, <span class="hljs-number">7777</span>, <span class="hljs-number">40000</span>),
+(<span class="hljs-number">100002</span>, <span class="hljs-string">'My mom hates me'</span>, <span class="hljs-number">2020</span>, <span class="hljs-string">'Nike Records'</span>, <span class="hljs-string">'English'</span>, <span class="hljs-string">'00:03:35'</span>, <span class="hljs-number">8888</span>, <span class="hljs-number">50000</span>),
+(<span class="hljs-number">100003</span>, <span class="hljs-string">'I am the GOAT'</span>, <span class="hljs-number">2020</span>, <span class="hljs-string">'Nike Records'</span>, <span class="hljs-string">'Hindi'</span>, <span class="hljs-string">'00:05:45'</span>, <span class="hljs-number">8888</span>, <span class="hljs-number">50000</span>),
+(<span class="hljs-number">111111</span>, <span class="hljs-string">'What\'</span>s <span class="hljs-keyword">Next</span><span class="hljs-string">', 2021, '</span>OVO<span class="hljs-string">', '</span>English<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">02</span>:<span class="hljs-number">58</span><span class="hljs-string">', 6666, 10000),
+(111112, '</span>Wants <span class="hljs-keyword">and</span> Needs<span class="hljs-string">', 2021, '</span>OVO<span class="hljs-string">', '</span>English<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">03</span>:<span class="hljs-number">13</span><span class="hljs-string">', 6666, 10000),
+(111113, '</span>Lemon Pepper Freestyle<span class="hljs-string">', 2021, '</span>OVO<span class="hljs-string">', '</span>English<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">06</span>:<span class="hljs-number">23</span><span class="hljs-string">', 6666, 10000),
+(222222, '</span>Otis<span class="hljs-string">', 2011, '</span>Tidal<span class="hljs-string">', '</span>English<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">02</span>:<span class="hljs-number">58</span><span class="hljs-string">', 4444, 20000),
+(222223, '</span>Gotta Have It<span class="hljs-string">', 2011, '</span>Tidal<span class="hljs-string">', '</span>English<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">02</span>:<span class="hljs-number">21</span><span class="hljs-string">', 4444, 20000),
+(222224, '</span><span class="hljs-keyword">New</span> <span class="hljs-keyword">Day</span><span class="hljs-string">', 2011, '</span>Tidal<span class="hljs-string">', '</span>English<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">06</span>:<span class="hljs-number">23</span><span class="hljs-string">', 4444, 20000),
+(222225, '</span>Liftoff<span class="hljs-string">', 2011, '</span>Tidal<span class="hljs-string">', '</span>English<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">04</span>:<span class="hljs-number">26</span><span class="hljs-string">', 4444, 20000),
+(222226, '</span>Who Gon <span class="hljs-keyword">Stop</span> Me<span class="hljs-string">', 2011, '</span>Tidal<span class="hljs-string">', '</span>English<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">03</span>:<span class="hljs-number">13</span><span class="hljs-string">', 4444, 20000),
+(333333, '</span>Tum Hi Ho<span class="hljs-string">', 2013, '</span>Bollywood<span class="hljs-string">', '</span>Hindi<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">02</span>:<span class="hljs-number">25</span><span class="hljs-string">', 5555, 30000),
+(333334, '</span>Sunn Raha Hai<span class="hljs-string">', 2013, '</span>Bollywood<span class="hljs-string">', '</span>Hindi<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">03</span>:<span class="hljs-number">15</span><span class="hljs-string">', 5555, 30000),
+(333335, '</span>Bhula Dena<span class="hljs-string">', 2013, '</span>Bollywood<span class="hljs-string">', '</span>Hindi<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">04</span>:<span class="hljs-number">43</span><span class="hljs-string">', 5555, 30000),
+(333336, '</span>Meri Aashiqui<span class="hljs-string">', 2013, '</span>Bollywood<span class="hljs-string">', '</span>Hindi<span class="hljs-string">', '</span><span class="hljs-number">00</span>:<span class="hljs-number">02</span>:<span class="hljs-number">55</span><span class="hljs-string">', 5555, 30000);
+
+INSERT INTO `users` (`UserID`, `Email`, `Name`, `MembershipPlan`) VALUES
+(10001, '</span>gsbrar@uw.edu<span class="hljs-string">', '</span>Jay<span class="hljs-string">', '</span>Standard<span class="hljs-string">'),
+(20000, '</span>joacotaco@hotmail.mx<span class="hljs-string">', '</span>Joaquin<span class="hljs-string">', '</span>Premium<span class="hljs-string">'),
+(30000, '</span>mcds@hotmail.com<span class="hljs-string">', '</span>Ani<span class="hljs-string">', '</span>Standard<span class="hljs-string">'),
+(40000, '</span>seahawksguyxo@gmail.com<span class="hljs-string">', '</span>Srikar<span class="hljs-string">', '</span>Premium<span class="hljs-string">'),
+(50000, '</span>madhav@uw.edu<span class="hljs-string">', '</span>Madhav<span class="hljs-string">', '</span>Premium<span class="hljs-string">');
+
+INSERT INTO `user_artist` (`ArtistID`, `UserID`) VALUES
+(4444, 40000),
+(5555, 20000),
+(6666, 10001),
+(7777, 30000),
+(8888, 50000);
+
+INSERT INTO `user_friend` (`UserID`, `FriendUserID`) VALUES
+(10001, 20000),
+(10001, 30000),
+(30000, 20000),
+(30000, 40000),
+(40000, 50000),
+(50000, 20000);
+
+INSERT INTO `user_playlist` (`PlaylistID`, `UserID`) VALUES
+(10000, 10001),
+(20000, 20000),
+(30000, 30000);
+
+INSERT INTO `user_podcast` (`PodcastID`, `UserID`) VALUES
+(1000, 10001),
+(1000, 30000),
+(1000, 40000),
+(2000, 20000),
+(2000, 40000),
+(2001, 20000),
+(2001, 40000);
+
+INSERT INTO `user_song` (`SongID`, `UserID`) VALUES
+(100001, 10001),
+(100002, 20000),
+(100003, 30000),
+(111111, 10001),
+(111111, 30000),
+(111112, 20000),
+(222222, 10001),
+(222223, 40000),
+(222225, 50000),
+(333333, 40000),
+(333335, 50000),
+(333336, 40000);
+</span></div></code></pre>
+<h3 id="join-queries">JOIN queries</h3>
+<h3 id="aggregate-functions">Aggregate Functions</h3>
+<h3 id="set-operators">SET Operators</h3>
+<h3 id="functions-and-procedure">Functions and Procedure</h3>
+<p>Function</p>
+<pre class="hljs"><code><div>DELIMITER $$
+<span class="hljs-keyword">CREATE</span> DEFINER=<span class="hljs-string">`root`</span>@<span class="hljs-string">`localhost`</span> <span class="hljs-keyword">FUNCTION</span> <span class="hljs-string">`album_deets`</span>(<span class="hljs-string">`SongCount`</span> <span class="hljs-built_in">INT</span>) <span class="hljs-keyword">RETURNS</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">30</span>) <span class="hljs-keyword">CHARSET</span> utf8mb4
+<span class="hljs-keyword">BEGIN</span>
+	<span class="hljs-keyword">DECLARE</span> albtyp <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>);
+    if SongCount=1 THEN
+    	<span class="hljs-keyword">SET</span> albtyp = <span class="hljs-string">"SINGLE"</span>;
+    ELSEIF SongCount&gt;2 AND SongCount&lt;5 THEN
+    	<span class="hljs-keyword">SET</span> albtyp = <span class="hljs-string">"EXCLUSIVE"</span>;
+    ELSE
+    	<span class="hljs-keyword">SET</span> albtyp = <span class="hljs-string">"DELUXE"</span>;
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+    RETURN albtyp;
+<span class="hljs-keyword">END</span>$$
+DELIMITER ;
+</div></code></pre>
+<p>Procedure</p>
+<pre class="hljs"><code><div>DELIMITER $$
+<span class="hljs-keyword">CREATE</span> DEFINER=<span class="hljs-string">`root`</span>@<span class="hljs-string">`localhost`</span> <span class="hljs-keyword">PROCEDURE</span> <span class="hljs-string">`artist_album`</span>(<span class="hljs-keyword">IN</span> <span class="hljs-string">`art_id`</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">50</span>), <span class="hljs-keyword">OUT</span> <span class="hljs-string">`alb_name`</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>), <span class="hljs-keyword">OUT</span> <span class="hljs-string">`no_of_tracks`</span> <span class="hljs-built_in">INT</span>(<span class="hljs-number">10</span>))
+<span class="hljs-keyword">BEGIN</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, SongCount
+<span class="hljs-keyword">INTO</span> alb_name, no_of_tracks
+<span class="hljs-keyword">FROM</span> album
+<span class="hljs-keyword">WHERE</span> ArtistID=art_id;
+<span class="hljs-keyword">END</span>$$
+DELIMITER ;
+</div></code></pre>
+<h3 id="triggers">Triggers</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> <span class="hljs-string">`friend_exists`</span> <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> <span class="hljs-string">`user_friend`</span>
+ <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span> <span class="hljs-keyword">BEGIN</span>
+<span class="hljs-keyword">DECLARE</span> err_msg <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>);
+<span class="hljs-keyword">SET</span> err_msg =  <span class="hljs-string">"Friend already exists"</span>;
+IF NEW.FriendUserID = OLD.FriendUserID THEN
+	SIGNAL SQLSTATE '45000'
+    <span class="hljs-keyword">SET</span> MESSAGE_TEXT = err_msg;
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+IF NEW.FriendUserID &lt;&gt; OLD.FriendUserID THEN
+    <span class="hljs-keyword">SET</span> NEW.FriendUserID = NEW.FriendUserID;
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+<span class="hljs-keyword">END</span>
+</div></code></pre>
+<h3 id="higher-level-programming---a-simple-frontend-that-talks-to-the-backend-database-is-required-to-be-developed">Higher Level Programming - A simple frontend that talks to the backend database is required to be developed .</h3>
+
+</body>
+</html>
