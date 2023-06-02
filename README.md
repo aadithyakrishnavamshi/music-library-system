@@ -12,11 +12,11 @@ The music library system is to categorize and catelog every     single piece of 
 
 The music library system uses Streamlit for frontend and MYSQL for the database.
 
-## ER Diagram gay 
-![](ER%20Diagram.png)
+## ER Diagram 
+![](er.png)
 
 ## Relational Schema 
-![](Relational%20Schema.png)
+![](relational_schema.png)
 
 ## DDL statements to build the database 
 ```sql
